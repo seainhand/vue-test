@@ -11,20 +11,32 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import {defineComponent, ref} from 'vue';
 
 export default defineComponent({
     props: {
         action: {
-            tyle: String,
+            type: String,
             require: true
         }
+    },
+    setup() {
+        const fileInput = ref<null | HTMLInputElement>(null);
+        const handleUpload = () => {
+            console.log(fileInput);
+            if (fileInput.value) {
+                fileInput.value.click();
+            }
+        };
+        return {
+            fileInput,
+            handleUpload
+        };
     }
 });
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .file-upload-input {
     display: none;
